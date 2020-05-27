@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-const bcrypt = require('bcrypt');
+
 class User extends Model {
   /**
    * @param {*} connection objeto de conexão do banco de dados
@@ -24,28 +24,6 @@ class User extends Model {
         },
       }
     );
-  }
-  static async authenticate(params) {
-    try {
-      const user = await this.scope('all').findOne({
-        where: { login: params.login },
-      });
-
-      if (!user) return false;
-
-      const match = await bcrypt.compare(params.password, user.password);
-
-      if (!match) return false;
-
-      user.password = undefined;
-
-      return user;
-    } catch (err) {
-      console.log(`
-      Error na autenticação
-      error: ${err}
-      `);
-    }
   }
 }
 
