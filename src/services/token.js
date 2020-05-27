@@ -5,6 +5,12 @@ function createToken({ id }) {
   return jwt.sign(id, env.secretKey);
 }
 
+function revokeToken({ token }) {}
+
+/** 
+ * @module createToken
+*/
 module.exports = {
   createToken,
+  revokeToken,
 };
