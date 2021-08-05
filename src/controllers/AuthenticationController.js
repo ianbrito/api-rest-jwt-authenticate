@@ -26,10 +26,9 @@ module.exports = {
       user.password = undefined;
 
       const token = JWT.createToken({ id: user.id });
-
       return response.status(201).json({ user, token });
+
     } catch (error) {
-      console.error(error.message)
       return response.status(401).send({ error: error.message });
     }
   },
@@ -38,7 +37,7 @@ module.exports = {
     try {
       const { login, password } = request.body;
       const { user, token } = await attempt({ login, password });
-      
+
       return response.json({ user, token });
     } catch (error) {
       return response.status(401).send({ error: error.message });
