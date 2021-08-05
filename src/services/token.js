@@ -1,16 +1,15 @@
 const jwt = require('jsonwebtoken');
-const env = require('../config/env');
+
+const SECRET_KEY = process.env.KEY;
 
 function createToken({ id }) {
-  return jwt.sign(id, env.secretKey);
+  return jwt.sign(id, SECRET_KEY);
 }
 
-function revokeToken({ token }) {}
 
 /** 
  * @module createToken
 */
 module.exports = {
-  createToken,
-  revokeToken,
+  createToken
 };
