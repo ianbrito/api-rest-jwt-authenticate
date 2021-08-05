@@ -9,7 +9,6 @@ const { UserExistsExceptions } = require('../exceptions/Auth');
 module.exports = {
   async signUp(request, response) {
     try {
-      console.log(request.body);
       let { name, login, password } = request.body;
 
       if (await User.findOne({ where: { login: login } })) {
@@ -28,8 +27,9 @@ module.exports = {
 
       const token = JWT.createToken({ id: user.id });
 
-      return response.json({ user, token });
+      return response.status(201).json({ user, token });
     } catch (error) {
+      console.error(error.message)
       return response.status(401).send({ error: error.message });
     }
   },
