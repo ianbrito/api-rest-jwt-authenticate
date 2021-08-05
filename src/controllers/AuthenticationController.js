@@ -9,6 +9,7 @@ const { UserExistsExceptions } = require('../exceptions/Auth');
 module.exports = {
   async signUp(request, response) {
     try {
+      console.log(request.body);
       let { name, login, password } = request.body;
 
       if (await User.findOne({ where: { login: login } })) {
@@ -35,11 +36,9 @@ module.exports = {
 
   async signIn(request, response) {
     try {
-      console.log(request.body);
       const { login, password } = request.body;
-
       const { user, token } = await attempt({ login, password });
-
+      
       return response.json({ user, token });
     } catch (error) {
       return response.status(401).send({ error: error.message });
