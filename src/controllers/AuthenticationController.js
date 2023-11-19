@@ -27,7 +27,6 @@ module.exports = {
 
       const token = JWT.createToken({ id: user.id });
       return response.status(201).json({ user, token });
-
     } catch (error) {
       return response.status(401).send({ error: error.message });
     }
@@ -46,6 +45,7 @@ module.exports = {
 
   async signOut(request, response) {
     try {
+      return response.status(200).send();
     } catch (error) {
       return response.status(500);
     }

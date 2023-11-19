@@ -6,10 +6,14 @@ function createToken({ id }) {
   return jwt.sign(id, SECRET_KEY);
 }
 
+function verifyToken(token) {
+  return jwt.verify(token, SECRET_KEY);
+}
 
-/** 
+/**
  * @module createToken
-*/
+ */
 module.exports = {
-  createToken
+  createToken,
+  verifyToken,
 };
