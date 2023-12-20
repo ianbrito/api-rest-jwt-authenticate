@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node ./src/index.js",
-    "dev": "nodemon ./src/index.js",
+    "dev": "node --watch ./src/index.js",
     "test": "ENV=test jest"
   },
   "dependencies": {
@@ -21,7 +21,6 @@
   "devDependencies": {
     "faker": "^5.5.3",
     "jest": "^27.0.6",
-    "nodemon": "^2.0.3",
     "sequelize-cli": "6.2.0",
     "supertest": "^6.1.4"
   }
